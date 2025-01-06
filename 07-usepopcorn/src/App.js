@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import StarRating from "./StarRating";
-
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -10,11 +9,18 @@ const KEY = "dd14aacb";
 export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
 
+  // const [watched, setWatched] = useState([]);
+
+  // lazy evaluation
+  // use as a function not directly like this useState(localStorage.getItem('watched'))
+  const [watched, setWatched] = useState(function () {
+    const storedValue = localStorage.getItem("watched");
+    return JSON.parse(storedValue);
+  });
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (selectedId === id ? null : id));
@@ -26,11 +32,22 @@ export default function App() {
 
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
+
+    // Add to localStorage
+    // localStorage.setItem("watched", JSON.stringify([...watched, movie]));
   }
 
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
+
+  // add to localStorage using useEffect
+  useEffect(
+    function () {
+      localStorage.setItem("watched", JSON.stringify(watched));
+    },
+    [watched]
+  );
 
   useEffect(
     function () {
@@ -165,6 +182,37 @@ function Logo() {
 }
 
 function Search({ query, setQuery }) {
+  // using useRef
+  const inputEl = useRef(null);
+
+  useEffect(function () {
+
+    function callback(e) {
+      if (inputEl.current === document.activeElement) return;
+
+      if (e.code === "Enter") {
+        inputEl.current.focus();
+        setQuery("");
+      }
+    }
+
+    document.addEventListener("keydown",callback);
+
+    return function cleanup() {
+      document.removeEventListener("keydown",callback);
+    }
+    
+  }, [setQuery]);
+
+  // using useEffect
+  // useEffect(
+  //   function () {
+  //     const el = document.querySelector(".search");
+  //     el.focus();
+  //   },
+  //   []
+  // )
+
   return (
     <input
       className="search"
@@ -172,6 +220,7 @@ function Search({ query, setQuery }) {
       placeholder="Search movies..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
+      ref={inputEl}
     />
   );
 }
@@ -258,6 +307,17 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState("");
 
+  const countRef = useRef(0);
+  let count = 0; // cannot use normal variable
+
+  useEffect(
+    function () {
+      if (userRating) countRef.current = countRef.current + 1;
+      if (userRating) count = count + 1; // wrong, because in every render count will become 0
+    },
+    [userRating, count]
+  )
+
   const {
     Title: title,
     Year: year,
@@ -276,6 +336,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     (movie) => movie.imdbID === selectedId
   )?.userRating;
 
+  
   // cannot use state conditionally
   // if (imdbRating > 8) [isTop, setIsTop] = useState(true);
 
@@ -284,7 +345,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   //   return <p>This is a top rated movie</p>
   // }
 
-                              // always false for the first render
+  // always false for the first render
   // const [isTop, setIsTop] = useState(imdbRating > 8);
   // console.log(isTop);
 
@@ -297,7 +358,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
   const isTop = imdbRating > 8;
   console.log(isTop);
-  
+
   // const [avgRating, setAvgRating] = useState(0);
 
   function handleAdd() {
@@ -309,13 +370,14 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(" ")[0]),
       userRating: Number(userRating),
+      countRatingDecisions: countRef.current,
+      count,
     };
 
     onAddWatched(newWatchedMovie);
     onCloseMovie();
     // setAvgRating(Number(imdbRating));
     // setAvgRating((avgRating) => (avgRating + userRating) / 2);
-    
   }
 
   useEffect(
