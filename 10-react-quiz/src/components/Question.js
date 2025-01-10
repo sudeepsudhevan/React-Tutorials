@@ -2,7 +2,7 @@ import React from 'react'
 import Options from './Options';
 
 export default function Question({question, dispatch, answer}) {
-    console.log(question);
+    // console.log(question);
     
   return (
     <div>
