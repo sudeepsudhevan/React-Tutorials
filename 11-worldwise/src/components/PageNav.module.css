@@ -1,0 +1,20 @@
+.nav{
+    background-color: orangered;
+    padding: 10px;
+}
+
+.nav ul{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.nav :global(.active){
+    background-color: green;
+}
+
+/* make global css */
+:global(.test){ 
+    background-color: red;
+}
+
