@@ -9,6 +9,7 @@ import AppLayout from "./pages/AppLayout";
 import Login from "./pages/Login";
 import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
+import City from "./components/City";
 
 
 const BASE_URL = "http://localhost:8000";
@@ -44,6 +45,7 @@ export default function App() {
         <Route path="app" element={<AppLayout />}>
           <Route index element={<CityList cities={cities} isloading={isloading} />} />
           <Route path="cities" element={<CityList cities={cities} isloading={isloading} />} />
+          <Route path="cities/:id" element={<City />} />
           <Route path="countries" element={<CountryList cities={cities} isloading={isloading} />} />
           <Route path="form" element={<p>Form</p>} />
         </Route>
