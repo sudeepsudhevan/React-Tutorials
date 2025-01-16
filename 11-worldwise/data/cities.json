@@ -13,18 +13,6 @@
       "id": "17806751"
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
-      "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": "98443197"
-    },
-    {
       "id": "8f97",
       "cityName": "Jevargi",
       "country": "India",
@@ -37,18 +25,6 @@
       }
     },
     {
-      "id": "4c7c",
-      "cityName": "Namakkal",
-      "country": "India",
-      "date": "2025-01-16T05:04:19.182Z",
-      "notes": "poyitilla lol..",
-      "emoji": "🇮🇳",
-      "position": {
-        "lat": "11.213155308793576",
-        "lng": "78.1633456188945"
-      }
-    },
-    {
       "id": "0880",
       "cityName": "Thrissur",
       "country": "India",
@@ -58,6 +34,30 @@
       "position": {
         "lat": "10.522516006459904",
         "lng": "76.2934609164424"
+      }
+    },
+    {
+      "id": "e8e8",
+      "cityName": "Davangere",
+      "country": "India",
+      "date": "2025-01-16T07:22:07.434Z",
+      "notes": "",
+      "emoji": "🇮🇳",
+      "position": {
+        "lat": "14.455958231194037",
+        "lng": "76.09541617888361"
+      }
+    },
+    {
+      "id": "ea2b",
+      "cityName": "Anew",
+      "country": "Turkmenistan",
+      "date": "2025-01-16T07:35:52.870Z",
+      "notes": "s",
+      "emoji": "🇹🇲",
+      "position": {
+        "lat": "39.842286020743394",
+        "lng": "58.82627789720167"
       }
     }
   ]
