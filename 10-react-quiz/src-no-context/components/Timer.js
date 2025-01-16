@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
-import { useQuiz } from '../contexts/QuizContext';
 
-export default function Timer() {
-    const { dispatch,secondsRemaining } = useQuiz();
+export default function Timer({dispatch, secondsRemaining}) {
 
     useEffect(function () {
         const id =setInterval(function () {
