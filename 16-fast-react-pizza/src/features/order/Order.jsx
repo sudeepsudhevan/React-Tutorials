@@ -1,6 +1,5 @@
 // Test ID: IIDSAT
 
-import { use } from "react";
 import { getOrder } from "../../services/apiRestaurant";
 import {
   calcMinutesLeft,
