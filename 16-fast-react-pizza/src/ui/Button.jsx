@@ -6,6 +6,7 @@ export default function Button({ children, disabled, to, type }) {
 
     const styles = {
         primary: base + " px-4 py-3 md:px-6 md:py-4",
+        secondary: "uppercase border-2 border-stone-300 px-4 py-2.5 md:px-6 md:py-3.5 font-semibold focus:text-stone-800 text-stone-400 inline-block tracking-wide focus:outline-none focus:ring focus:ring-stone-200 focus:bg-stone-300 focus:ring-offset-2 rounded-full hover:bg-stone-300 hover:text-stone-800 transition-colors duration-300 disabled:cursor-not-allowed",
         small: base + " py-2 md:px-5 md:py-2.5 text-xs",
     }
 
