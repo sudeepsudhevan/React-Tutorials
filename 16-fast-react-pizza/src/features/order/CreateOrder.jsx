@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
-import { useSelector } from "react-redux";
-import { getUsername } from "../user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAddress, getUsername } from "../user/userSlice";
 import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
 import EmptyCart from "../cart/EmptyCart";
 import store from "../../store";
@@ -22,6 +22,7 @@ function CreateOrder() {
   const isSubmitting = navigation.state === "submitting";
 
   const formErrors = useActionData();
+  const dispatch = useDispatch();
 
   const cart = useSelector(getCart);
   const totalCartPrice = useSelector(getTotalCartPrice);
@@ -35,6 +36,10 @@ function CreateOrder() {
       <h2 className="text-xl font-semibold mb-8">
         Ready to order? Let&apos;s go!
       </h2>
+
+      <button onClick={() => dispatch(fetchAddress())}>
+        Get my current location
+      </button>
 
       {/* <Form method="POST" action="/order/new"> */}
       <Form method="POST">
