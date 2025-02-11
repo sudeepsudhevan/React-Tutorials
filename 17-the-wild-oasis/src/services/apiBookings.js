@@ -38,7 +38,7 @@ export async function getBookings({ filter, sortBy, page }) {
     throw new Error("Bookings could not get loaded");
   }
 
-  return {data, count};
+  return { data, count };
 }
 
 export async function getBooking(id) {
