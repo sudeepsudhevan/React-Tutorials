@@ -8,7 +8,7 @@ export default function Cabin() {
   return (
     <>
     <Head>
-      <title>Cabin {router.query.cabinId} / The Wild Oasis</title>
+      <title>{`Cabin ${router.query.cabinId} / The Wild Oasis`}</title>
     </Head>
     <div>cabin {router.query.cabinId}</div>
     </>
