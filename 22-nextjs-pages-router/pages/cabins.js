@@ -9,6 +9,7 @@ export async function getStaticProps() {
     props: {
       cabins,
     },
+    revalidate: 3600,
   }
 }
 

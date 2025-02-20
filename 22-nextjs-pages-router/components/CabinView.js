@@ -3,7 +3,7 @@ import { EyeSlashIcon, MapPinIcon, UsersIcon } from '@heroicons/react/24/solid';
 import TextExpander from './TextExpander';
 
 function CabinView({ cabin }) {
-  const { id, name, maxCapacity, regularPrice, discount, image, description } =
+  const {  name, maxCapacity, regularPrice, discount, image, description } =
     cabin;
 
   return (
