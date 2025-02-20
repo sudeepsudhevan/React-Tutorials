@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }) {
 
       <div className="flex-1 px-8 py-12 grid">
         <main className="max-w-7xl mx-auto w-full">
-          <Component {...pageProps} />;
+          <Component {...pageProps} />
         </main>
       </div>
     </div>
