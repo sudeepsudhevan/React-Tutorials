@@ -1,9 +1,14 @@
 import Image from 'next/image';
 import image1 from '@/public/about-1.jpg';
 import image2 from '@/public/about-2.jpg';
+import Head from 'next/head';
 
 export default function About() {
   return (
+    <>
+    <Head>
+      <title>About / The Wild Oasis</title>
+    </Head>
     <div className='grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center'>
       <div className='col-span-3'>
         <h1 className='text-4xl mb-10 text-accent-400 font-medium'>
@@ -82,5 +87,6 @@ export default function About() {
         </div>
       </div>
     </div>
+    </>
   );
 }

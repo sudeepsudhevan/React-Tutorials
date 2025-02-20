@@ -1,5 +1,11 @@
+import Head from "next/head";
+
 export default function Cabins() {
   return (
+    <>
+    <Head>
+      <title>Cabins / The Wild Oasis</title>
+    </Head>
     <div>
       <h1 className='text-4xl mb-5 text-accent-400 font-medium'>
         Our Luxury Cabins
@@ -13,5 +19,6 @@ export default function Cabins() {
         Welcome to paradise.
       </p>
     </div>
+    </>
   )
 }
